@@ -8,4 +8,4 @@ RUN cd rtl-sdr/ && mkdir build && cd build && \
     cmake ../ -DINSTALL_UDEV_RULES=ON -DDETACH_KERNEL_DRIVER=ON && \
     make && make install && ldconfig
 
-ENTRYPOINT ["rtl_tcp", "-a", "0.0.0.0", "-p", "1190", "-f", "102100000"]
+CMD ["rtl_tcp", "-a", "0.0.0.0", "-p", "1190", "-f", "102100000"]
