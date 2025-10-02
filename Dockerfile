@@ -1,3 +1,3 @@
-FROM ubuntu:3
+FROM ubuntu:24.04
 
-RUN apt update && echo guh
+RUN apt-get update && echo guh
