@@ -1,0 +1,33 @@
+<ices>
+  <background>0</background>
+  <logpath>/var/log/ices</logpath>
+  <logfile>ices.log</logfile>
+  <loglevel>3</loglevel>
+
+  <stream>
+    <metadata>
+      <name>Craptop Radioo</name>
+      <genre>Various</genre>
+      <description>Brought to you by RTL-SDR</description>
+      <url>http://127.0.0.1:1190/</url>
+      <public>1</public>
+    </metadata>
+
+    <input>
+      <module>stdinpcm</module>
+      <param name="rate">32000</param>
+      <param name="channels">1</param>
+      <param name="metadata">1</param>
+    </input>
+    
+    <instance>
+      <hostname>127.0.0.1</hostname>
+      <port>1190</port>
+      <username>source</username>
+      <password>fnh429ubfjb9xhfhjh002kp</password>
+      <mount>/crapradio</mount>
+      <reconnectdelay>10</reconnectdelay>
+      <reconnectattempts>999</reconnectattempts>
+    </instance>
+  </stream>
+</ices>
