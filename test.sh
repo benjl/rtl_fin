@@ -1,2 +1,2 @@
 #!/bin/bash
-docker run 
+docker exec -it rtl_fin /bin/bash
