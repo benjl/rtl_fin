@@ -1,10 +1,10 @@
-FROM ubuntu:24.04 AS builder
+FROM alpine:3 AS builder
 
-RUN apt-get update && apt-get install -y git libusb-1.0.0-dev cmake pkg-config
+RUN apk add --no-cache git libusb-dev cmake make build-base
 
 RUN git clone https://gitea.osmocom.org/sdr/rtl-sdr.git
 RUN cd rtl-sdr/ && mkdir build && cd build && \
-    cmake ../ -DINSTALL_UDEV_RULES=ON -DDETACH_KERNEL_DRIVER=ON && make TARGET=x86_64-linux-musl
+    cmake ../ -DINSTALL_UDEV_RULES=ON -DDETACH_KERNEL_DRIVER=ON && make
 
 FROM alpine:3 AS runner
 
