@@ -1,19 +1,23 @@
-FROM ubuntu:24.04 AS stage1
+FROM ubuntu:24.04 AS builder
 
-RUN apt-get update && apt-get install -y git libusb-1.0.0-dev cmake pkg-config sox socat libsox-fmt-mp3
-RUN apt-get install -y icecast2 ezstream
+RUN apt-get update && apt-get install -y git libusb-1.0.0-dev cmake pkg-config
 
 RUN git clone https://gitea.osmocom.org/sdr/rtl-sdr.git
 RUN cd rtl-sdr/ && mkdir build && cd build && \
-    cmake ../ -DINSTALL_UDEV_RULES=ON -DDETACH_KERNEL_DRIVER=ON && \
-    make && make install && ldconfig
+    cmake ../ -DINSTALL_UDEV_RULES=ON -DDETACH_KERNEL_DRIVER=ON && make TARGET=x86_64-linux-musl
 
-RUN useradd --system --no-create-home --shell /usr/sbin/nologin --gid icecast icecast
-RUN mkdir -p /var/run/icecast2 /var/log/icecast2 /var/lib/icecast2
+FROM alpine:3 AS runner
+
+RUN apk add --no-cache icecast ezstream sox libusb-dev
+
+RUN mkdir /rtl-sdr
+COPY --from=builder /rtl-sdr/build/src/rtl_fm /rtl-sdr/build/src/rtl_sdr /usr/local/bin/
+COPY --from=builder /rtl-sdr/build/src/librtlsdr.so.0 /rtl-sdr/build/src/librtlsdr.so.2.0.1 /rtl-sdr/build/src/librtlsdr.so /rtl-sdr/build/src/librtlsdr.a /usr/local/lib/
+
+RUN mkdir -p /var/run/icecast2 /var/log/icecast2 /var/lib/icecast2 /etc/icecast2
 RUN chown -R icecast:icecast /etc/icecast2 /var/run/icecast2 /var/log/icecast2 /var/lib/icecast2
 
 COPY ./ezstream_cfg.xml /
-RUN cd /etc/icecast2 && rm icecast.xml
 COPY ./icecast_cfg.xml /etc/icecast2
 
 COPY ./init.sh /
