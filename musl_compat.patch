@@ -1,0 +1,38 @@
+diff --git a/src/ezstream-cfgmigrate.c b/src/ezstream-cfgmigrate.c
+index 0a3b4ff..6c7881f 100644
+--- a/src/ezstream-cfgmigrate.c
++++ b/src/ezstream-cfgmigrate.c
+@@ -18,6 +18,8 @@
+ # include "config.h"
+ #endif
+ 
++#include <libgen.h>
++
+ #include "compat.h"
+ 
+ #if defined(HAVE_LIBGEN_H) && !defined(__linux__)
+diff --git a/src/ezstream.c b/src/ezstream.c
+index 3eb3fef..52914c4 100644
+--- a/src/ezstream.c
++++ b/src/ezstream.c
+@@ -12,6 +12,7 @@
+  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  *  GNU General Public License for more details.
+  */
++#include <libgen.h>
+ 
+ #ifdef HAVE_CONFIG_H
+ # include "config.h"
+diff --git a/src/mdata.c b/src/mdata.c
+index bd9c333..3dbd3f0 100644
+--- a/src/mdata.c
++++ b/src/mdata.c
+@@ -18,6 +18,8 @@
+ # include "config.h"
+ #endif /* HAVE_CONFIG_H */
+ 
++#include <libgen.h>
++
+ #include "compat.h"
+ 
+ #include <sys/stat.h>
