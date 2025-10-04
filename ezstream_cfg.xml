@@ -1,0 +1,35 @@
+<ezstream>
+    <servers>
+        <server>
+            <name>Craptop_radio</name>
+            <protocol>HTTP</protocol>
+            <hostname>127.0.0.1</hostname>
+            <port>1190</port>
+            <user>source</user>
+            <password>fnh429ubfjb9xhfhjh002kp</password>
+            <reconnect_attempts>0</reconnect_attempts>
+            <tls>None</tls>
+        </server>
+    </servers>
+    <streams>
+        <stream>
+            <name>default</name>
+            <mountpoint>crapradio</mountpoint>
+            <public>0</public>
+            <intake>crap_rtl</intake>
+            <server>Craptop_radio</server>
+            <format>mp3</format>
+            <stream_name>Crap Radio 102.1</stream_name>
+            <stream_genre>Various</stream_genre>
+            <stream_description>Brought to you by rtl-sdr</stream_description>
+        </stream>
+    </streams>
+    <intakes>
+        <intake>
+            <name>crap_rtl</name>
+            <type>stdin</type>
+            <stream_once>1</stream_once>
+        </intake>
+    </intakes>
+    <metadata></metadata>
+</ezstream>
