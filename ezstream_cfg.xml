@@ -19,7 +19,7 @@
             <intake>crap_rtl</intake>
             <server>Craptop_radio</server>
             <format>mp3</format>
-            <stream_name>Crap Radio 102.1</stream_name>
+            <stream_name>Crap Radio {FREQUENCY}Hz</stream_name>
             <stream_genre>Various</stream_genre>
             <stream_description>Brought to you by rtl-sdr</stream_description>
         </stream>

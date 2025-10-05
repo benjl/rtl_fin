@@ -13,7 +13,7 @@
     -->
 
     <limits>
-        <clients>3</clients>
+        <clients>99</clients>
         <sources>1</sources>
         <queue-size>524288</queue-size>
         <client-timeout>30</client-timeout>

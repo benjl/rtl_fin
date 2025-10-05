@@ -3,9 +3,11 @@ services:
     image: rtl_fin
     container_name: rtl_fin
     devices:
-      - /dev/bus/usb/003/002
+      - /dev/bus/usb/003/
     networks:
       - piracy_default
+    environment:
+      - FREQUENCY=102.1M
 networks:
   piracy_default:
     external: true
