@@ -4,6 +4,8 @@ services:
     container_name: rtl_fin
     devices:
       - /dev/bus/usb/003/
+    ports:
+      - 1190:1190
     networks:
       - piracy_default
     environment:
