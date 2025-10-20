@@ -1,6 +1,6 @@
 services:
   rtl_fin:
-    image: rtl_fin
+    image: osplo/rtl_fin:latest
     container_name: rtl_fin
     devices:
       - /dev/bus/usb/003/
