@@ -5,7 +5,8 @@ WORKDIR /
 # Dependencies
 RUN apk add --no-cache git libusb-dev cmake make build-base
 RUN apk add --no-cache musl-dev libshout-dev taglib-dev libxml2-dev check-dev libbsd-dev
-RUN apk add --no-cache meson libsndfile-dev 
+RUN apk add --no-cache meson libsndfile-dev
+RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && apk add --no-cache liquid-dsp-dev@testing
 
 # Download and compile rtl_sdr
 RUN git clone https://gitea.osmocom.org/sdr/rtl-sdr.git
@@ -22,10 +23,6 @@ RUN cd /ezstream-1.0.2 && git init && git config user.email "root@root.com" && g
 # Compile ezstream
 RUN cd /ezstream-1.0.2 && LDFLAGS="-lbsd" ./configure && make
 
-# Download and compile libliquid
-RUN git clone https://github.com/jgaeddert/liquid-dsp.git && cd /liquid-dsp && mkdir build && cd build && cmake .. && make
-RUN cd /liquid-dsp/build && make install
-
 # Download and compile redsea
 RUN git clone https://github.com/windytan/redsea.git && cd /redsea && meson setup build && cd build && meson compile
 
@@ -34,6 +31,7 @@ FROM alpine:3 AS runner
 WORKDIR /
 
 RUN apk add --no-cache icecast sox libusb-dev libshout libxml2 taglib libbsd
+RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && apk add --no-cache liquid-dsp@testing
 
 # Copy over rtl-sdr
 RUN mkdir /rtl-sdr
@@ -44,8 +42,7 @@ COPY --from=builder /rtl-sdr/build/src/librtlsdr.so.0 /rtl-sdr/build/src/librtls
 COPY --from=builder /ezstream-1.0.2/src/ezstream /usr/bin
 
 # Copy over redsea and libliquid
-COPY --from=builder /redsea /
-COPY --from=builder /liquid-dsp /
+COPY --from=builder /redsea/build/redsea /usr/local/bin
 
 # Setup for icecast
 RUN mkdir -p /var/run/icecast2 /var/log/icecast2 /var/lib/icecast2 /etc/icecast2
