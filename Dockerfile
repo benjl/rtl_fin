@@ -24,6 +24,7 @@ RUN cd /ezstream-1.0.2 && LDFLAGS="-lbsd" ./configure && make
 
 # Download and compile libliquid
 RUN git clone https://github.com/jgaeddert/liquid-dsp.git && cd /liquid-dsp && mkdir build && cd build && cmake .. && make
+RUN cd /liquid-dsp/build && make install
 
 # Download and compile redsea
 RUN git clone https://github.com/windytan/redsea.git && cd /redsea && meson setup build && cd build && meson compile
