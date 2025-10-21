@@ -30,8 +30,8 @@ FROM alpine:3 AS runner
 
 WORKDIR /
 
-RUN apk add --no-cache icecast sox libusb-dev libshout libxml2 taglib libbsd
-RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && apk add --no-cache liquid-dsp@testing
+RUN apk add --no-cache icecast sox libusb-dev libshout libxml2 taglib libbsd jq gnu-libiconv libsndfile nlohmann-json
+RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && apk add --no-cache liquid-dsp-dev@testing
 
 # Copy over rtl-sdr
 RUN mkdir /rtl-sdr
