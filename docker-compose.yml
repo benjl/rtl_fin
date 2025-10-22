@@ -1,7 +1,7 @@
 services:
-  rtl_fin:
-    image: osplo/rtl_fin:latest
-    container_name: rtl_fin
+  rtl_cast:
+    image: osplo/rtl_cast:latest
+    container_name: rtl_cast
     devices:
       - /dev/bus/usb/003/
     ports:

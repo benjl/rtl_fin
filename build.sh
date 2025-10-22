@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t osplo/rtl_fin:latest .
+docker build -t osplo/rtl_cast:latest .
