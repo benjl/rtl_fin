@@ -6,11 +6,15 @@ services:
       - /dev/bus/usb/003/
     ports:
       - 1190:1190
-    networks:
-      - piracy_default
     environment:
-      - FREQUENCY=102.1M
-networks:
-  piracy_default:
-    external: true
-    name: piracy_default
+      # - RTLCAST_FREQUENCY=102.1M
+      # - RTLCAST_PORT=1190
+      # - RTLCAST_SERVERNAME="RTL Radio"
+      # - RTLCAST_STREAMNAME="RTL Radio at $RTLCAST_FREQUENCY\Hz"
+      # - RTLCAST_DESCRIPTION="Brought to you by rtl-sdr"
+      # - RTLCAST_GENRE=Various
+      # - RTLCAST_MOUNTPOINT=radio
+      # - RTLCAST_LOCATION=Place
+      # - RTLCAST_ADMIN_CONTACT=admin@example.com
+      # - RTLCAST_ADMIN_USER=admin
+      # - RTLCAST_ADMIN_PASSWORD=CHANGEMEPLEASEYOUWILLBEHACKED

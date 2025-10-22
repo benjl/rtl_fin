@@ -37,10 +37,25 @@ RUN mkdir -p /var/run/icecast2 /var/log/icecast2 /var/lib/icecast2 /etc/icecast2
 RUN chown -R icecast:icecast /etc/icecast2 /var/run/icecast2 /var/log/icecast2 /var/lib/icecast2
 
 # Copy over cfgs
-COPY ./ezstream_cfg.xml /
-COPY ./icecast_cfg.xml /etc/icecast2
+COPY ./ezstream_cfg_default.xml /
+COPY ./icecast_cfg_default.xml /etc/icecast2
 
 COPY ./init.sh /
 RUN chmod +x /init.sh
+
+ENV RTLCAST_FREQUENCY=102.1M
+ENV RTLCAST_PORT=1190
+ENV RTLCAST_SERVERNAME="RTL Radio"
+ENV RTLCAST_STREAMNAME="RTL Radio at $RTLCAST_FREQUENCY\Hz"
+ENV RTLCAST_DESCRIPTION="Brought to you by rtl-sdr"
+ENV RTLCAST_GENRE=Various
+ENV RTLCAST_MOUNTPOINT=radio
+ENV RTLCAST_LOCATION=Place
+ENV RTLCAST_ADMIN_CONTACT=admin@example.com
+ENV RTLCAST_ADMIN_USER=admin
+ENV RTLCAST_ADMIN_PASSWORD=CHANGEMEPLEASEYOUWILLBEHACKED
+
+ENV RTLCAST_SRC_PASSWORD=fnh429ubfjb9xhfhjh002kpgadgdagadbb
+ENV RTLCAST_RELAY_PASSWORD=bf97hf74x9m2HF4246y8fsaf4brr
 
 CMD ["/init.sh"]

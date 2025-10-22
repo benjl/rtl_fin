@@ -1,12 +1,12 @@
 <ezstream>
     <servers>
         <server>
-            <name>Craptop_radio</name>
+            <name>{SERVERNAME}</name>
             <protocol>HTTP</protocol>
             <hostname>127.0.0.1</hostname>
-            <port>1190</port>
+            <port>{PORT}</port>
             <user>source</user>
-            <password>fnh429ubfjb9xhfhjh002kp</password>
+            <password>{SRC_PASSWORD}</password>
             <reconnect_attempts>0</reconnect_attempts>
             <tls>None</tls>
         </server>
@@ -14,19 +14,19 @@
     <streams>
         <stream>
             <name>default</name>
-            <mountpoint>crapradio</mountpoint>
+            <mountpoint>{MOUNTPOINT}</mountpoint>
             <public>0</public>
-            <intake>crap_rtl</intake>
-            <server>Craptop_radio</server>
+            <intake>rtl_intake</intake>
+            <server>{SERVERNAME}</server>
             <format>mp3</format>
-            <stream_name>Crap Radio {FREQUENCY}Hz</stream_name>
-            <stream_genre>Various</stream_genre>
-            <stream_description>Brought to you by rtl-sdr</stream_description>
+            <stream_name>{STREAMNAME}</stream_name>
+            <stream_genre>{GENRE}</stream_genre>
+            <stream_description>{DESCRIPTION}</stream_description>
         </stream>
     </streams>
     <intakes>
         <intake>
-            <name>crap_rtl</name>
+            <name>rtl_intake</name>
             <type>stdin</type>
             <stream_once>1</stream_once>
         </intake>

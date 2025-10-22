@@ -2,8 +2,8 @@
     <!-- location and admin are two arbitrary strings that are e.g. visible
          on the server info page of the icecast web interface
          (server_version.xsl). -->
-    <location>Earth</location>
-    <admin>icemaster@localhost</admin>
+    <location>{LOCATION}</location>
+    <admin>{ADMIN_CONTACT}</admin>
 
     <!-- IMPORTANT!
          Especially for inexperienced users:
@@ -34,13 +34,13 @@
 
     <authentication>
         <!-- Sources log in with username 'source' -->
-        <source-password>fnh429ubfjb9xhfhjh002kp</source-password>
+        <source-password>{SRC_PASSWORD}</source-password>
         <!-- Relays log in with username 'relay' -->
-        <relay-password>89jcmmt8hm92rs29idfjme9cy2e</relay-password>
+        <relay-password>{RELAY_PASSWORD}</relay-password>
 
         <!-- Admin logs in with the username given below -->
-        <admin-user>admin</admin-user>
-        <admin-password>95346</admin-password>
+        <admin-user>{ADMIN_USER}</admin-user>
+        <admin-password>{ADMIN_PASSWORD}</admin-password>
     </authentication>
 
     <!-- set the mountpoint for a shoutcast source to use, the default if not
@@ -65,7 +65,7 @@
 
     <!-- You may have multiple <listen-socket> elements -->
     <listen-socket>
-        <port>1190</port>
+        <port>{PORT}</port>
         <!-- <bind-address>127.0.0.1</bind-address> -->
         <!-- <shoutcast-mount>/stream</shoutcast-mount> -->
     </listen-socket>
